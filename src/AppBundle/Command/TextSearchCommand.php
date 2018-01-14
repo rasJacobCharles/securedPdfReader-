@@ -98,8 +98,8 @@ class TextSearchCommand extends Command
     private function setMenuQuestions(): void
     {
         $this->compandHelper                        = $this->getHelper('question');
-        $this->commandQuestion[self::QUESTION_1]    = new ChoiceQuestion(self::MENU_QUESTION, self::MENU_OPTIONS, self::DEFAULT_MENU_OPTION);
-        $this->commandQuestion[self::QUESTION_2]    = new Question('Please enter a search string?');
+        $this->commandQuestion[self::QUESTION_1]    = new ChoiceQuestion(self::MENU_QUESTION, self::MENU_OPTIONS, self::DEFAULT_MENU_OPTION, '');
+        $this->commandQuestion[self::QUESTION_2]    = new Question('Please enter a search string?', '');
         $this->commandQuestion[self::QUESTION_1]->setErrorMessage(self::MENU_ERROR_MESSAGE);
     }
 
@@ -107,6 +107,7 @@ class TextSearchCommand extends Command
     {
         $output->writeln(self::MENU_MESSAGE);
         $choice = $this->compandHelper->ask($input, $output, $this->commandQuestion[self::QUESTION_1]);
+
         return $choice;
     }
 

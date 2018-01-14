@@ -60,13 +60,13 @@ class ScanFile
         $score = similar_text($matchQuery, $this->searchQuery);
         $length = strlen($this->searchQuery);
 
-        return $score / $length * 100;
+        return ($score === 0 | $length === 0)? 0:$score / $length * 100;
     }
 
 
     private function isStringInContent(string $fileContent, string $search): bool
     {
-        $position = strpos($fileContent, $search);
+        $position = (empty($search)|| empty($fileContent))? false : strpos($fileContent, $search);
 
         return ($position !==false)? true : false;
     }
